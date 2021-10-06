@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flux</title>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+ <style>
+
+     *{
+        font-family: 'Lato', sans-serif;
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+     }
+     #produtos,
+     #carrinho{
+         max-width: 900px;
+         margin:0 auto;
+         padding:0 2%;
+         display: flex;
+     }
+     
+     #carrinho{
+         max-width: 900px;
+         margin:0 auto;
+         padding:0 2%;
+         display: block;
+     }
+     .produto-single{
+         width: 32%;
+         margin-right: 1%;
+         border:1px solid #ccc;
+         margin-top: 20px;
+         margin-bottom: 20px;
+     }
+
+     .produto-single img{
+         max-width: 100%;
+     }
+     .produto-single a{
+         text-decoration:none;
+         color:white;
+         background-color:#92a8d1;
+         text-align: center;
+         display:block;
+         padding: 4px 0;
+         font-size: 18px;
+    
+     }
+     h2{
+        background-color: hsl(89, 43%, 51%);
+        padding: 10px 0;
+        text-align: center;
+        color: white; 
+     } 
+
+ </style>
+</head>
+<form method="POST" class="form">
+    <div class="conteiner">
+        <h1>Contato</h1>
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" id="nome">
+
+            <label for="email">E-mail</label>
+            <input type="email" name="email" id="email">
+
+            <label for="tel">Telefone(WhatsApp)</label>
+            <input type="tel" name="tel" id="tel">
+
+            <label for="msg">Motivo do seu contato</label>
+            <input type="textarea" name="msg" id="msg">
+            <input type="submit" value="Enviar">
+    </div>
+
+</form>
+
+<body>
+<h2>A Nata:</h2>
+
+<div id="produtos">
+   
+</div> <!--produtos-->
+<h2>Carrinho</h2>
+
+<div id="carrinho">
+
+</div><!--carrinho-->
+
+<script>
+    const items = [
+    { 
+      id: 0,
+      nome: 'camiseta',
+      Image: 'camisa azul 2.jpg',
+      quantidade: 0
+
+    },
+    { 
+      id: 1,
+      nome: 'camiseta 2',
+      Image: 'Camiseta ank e olho de horus 225.jpg',
+      quantidade: 0
+
+    },{ 
+      id: 2,
+      nome: 'camiseta 3',
+      Image: 'Dragão Chines Preto 225.jpg',
+      quantidade: 0
+
+    },
+
+    ]
+
+    inicializarLoja =() => {
+        var containerProdutos =document.getElementById('produtos');
+        items.map((val)=>{
+           containerProdutos.innerHTML+= `
+           
+           <div class="produto-single">
+               <img src="`+val.Image+`" />
+               <p>`+val.nome+`</p>
+               <a key="`+val.id+`" href="#">Adicionar ao carrinho!</a>
+            </div>
+           `;
+
+        })
+    }
+    inicializarLoja();
+
+    atualizarCarrinho = () => {
+        var containerCarrinho =document.getElementById('carrinho');
+        containerCarrinho.innerHTML ="";
+        items.map((val)=>{
+            if(val.quantidade > 0)
+            
+           containerCarrinho.innerHTML+= `
+           
+          <p>`+val.nome+` | quantidade: `+val.quantidade+`</p>
+          <hr>
+           
+          `;
+           {
+
+           }
+
+        })
+    }
+
+    var links = document.getElementsByTagName('a');
+
+    for(var i = 0; i < links.length; i++){
+        links[i].addEventListener("click",function(){
+        let key = this.getAttribute('key');
+        items[key].quantidade++;
+        atualizarCarrinho();
+        return false;
+    })
+    }
+</script>
+</body>
+
+</html><header>
+    <div class="titulo">
+        <h1>Produtos</h1>
+    </div>
+    <div class="sobre-contato">
+        <ul>
+            <li><a href="contato.html">Sobre</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+    </div>
+</header>
+<div class="msg">
+    <h2>Camisa de qualidade 100% algodão</h2>
+</div>
+<section class="conteiner">
+        <div class="Camiseta">
+            <h1>Camiseta </h1>
+            <img src="camisa azul 2.jpg">
+            <div class="infos">
+                <p>Camiseta R$45,00 Azul Neon 100% algodão,malha fina.</p>
+                <a href="Camiseta1.html"><button>R$45,00 Comprar </button></a>
+            </div>
+        </div>
+        <div class="Camiseta 2">
+            <h1>Camiseta 2</h1>
+            <img src="Camiseta ank e olho de horus 225.jpg">
+            <div class="infos">
+                <p>Camiseta 2 R$55,00. 100% algodão,estampa em silk,camiseta    </p>
+                <a href="camiseta2.html"><button>R$ 55,00 Comprar</button></a>
+            </div>
+        </div>
+        <div class="Camiseta 3">
+            <h1>Camiseta 3</h1>
+            <img src="Dragão Chines Preto 225.jpg">
+            <div class="infos">
+                <p>Camiseta 3 R$50,00 Camiseta preta 100% algodão,dragão chines,malha fina,estampa silk.</p>
+                <a href="camiseta3.html"><button>R$50,00 Comprar</button></a>
+            </div>
+        </div>
+</section>
